@@ -31,11 +31,11 @@ enum DeviceType: String, CaseIterable {
 
 func printHelp() {
     let helpMessage = """
-    
     iconcraft: A CLI tool to generate app icons for various Apple platforms.
     
     Usage:
       iconcraft <reference icon filename> -d <device type>
+      iconcraft <reference icon filename> <custom size>
     
     Options:
       -d    Specify the device type (iPhone, iPad, macOS, watchOS, tvOS, carOS).
@@ -46,11 +46,12 @@ func printHelp() {
     Examples:
       iconcraft icon.png -d iPhone
       iconcraft icon.png -d macOS
+      iconcraft icon.png 512
       iconcraft -d
-      iconcraft -d iPhone
     
     Notes:
     - The reference icon file must be at least 1024x1024 pixels and must be square.
+    - The custom size must be a positive integer and must not exceed 1024.
     """
     print(helpMessage)
 }
@@ -72,7 +73,7 @@ func listDeviceResolutions(for deviceType: DeviceType) {
     }
 }
 
-func generateIcons(referenceIconPath: String, for deviceType: DeviceType) {
+func generateIcon(referenceIconPath: String, with size: Int) {
     guard let image = NSImage(contentsOfFile: referenceIconPath) else {
         print("Error: Unable to load the reference icon file.")
         return
@@ -96,36 +97,27 @@ func generateIcons(referenceIconPath: String, for deviceType: DeviceType) {
         return
     }
 
-    let sizes = deviceType.sizes
-
-    let directoryURL = URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
-        .appendingPathComponent(deviceType.rawValue, isDirectory: true)
-
-    do {
-        try FileManager.default.createDirectory(at: directoryURL, withIntermediateDirectories: true, attributes: nil)
-    } catch {
-        print("Error: Unable to create output directory.")
+    guard size > 0, size <= 1024 else {
+        print("Error: The custom size must be a positive integer and must not exceed 1024.")
         return
     }
 
-    for size in sizes {
-        let newSize = NSSize(width: size, height: size)
-        let resizedImage = NSImage(size: newSize)
-        resizedImage.lockFocus()
-        bitmap.draw(in: NSRect(origin: .zero, size: newSize))
-        resizedImage.unlockFocus()
+    let newSize = NSSize(width: size, height: size)
+    let resizedImage = NSImage(size: newSize)
+    resizedImage.lockFocus()
+    bitmap.draw(in: NSRect(origin: .zero, size: newSize))
+    resizedImage.unlockFocus()
 
-        if let imageData = resizedImage.tiffRepresentation,
-           let imageRep = NSBitmapImageRep(data: imageData),
-           let pngData = imageRep.representation(using: .png, properties: [:]) {
-            let outputFileName = "Icon-\(deviceType.rawValue)-\(size)x\(size).png"
-            let outputURL = directoryURL.appendingPathComponent(outputFileName)
-            do {
-                try pngData.write(to: outputURL)
-                print("Generated \(outputURL.path)")
-            } catch {
-                print("Error: Unable to save resized icon at \(outputURL.path)")
-            }
+    if let imageData = resizedImage.tiffRepresentation,
+       let imageRep = NSBitmapImageRep(data: imageData),
+       let pngData = imageRep.representation(using: .png, properties: [:]) {
+        let outputFileName = "Icon-Custom-\(size)x\(size).png"
+        let outputURL = URL(fileURLWithPath: FileManager.default.currentDirectoryPath).appendingPathComponent(outputFileName)
+        do {
+            try pngData.write(to: outputURL)
+            print("Generated \(outputURL.path)")
+        } catch {
+            print("Error: Unable to save resized icon at \(outputURL.path)")
         }
     }
 }
@@ -144,6 +136,12 @@ if arguments.count == 3 && arguments[1] == "-d" {
         print("Error: Invalid device type specified.")
         printHelp()
     }
+    exit(0)
+}
+
+if arguments.count == 3, let customSize = Int(arguments[2]) {
+    let referenceIconPath = arguments[1]
+    generateIcon(referenceIconPath: referenceIconPath, with: customSize)
     exit(0)
 }
 
@@ -167,4 +165,4 @@ guard deviceOption == "-d", let deviceType = DeviceType(rawValue: deviceTypeArgu
     exit(1)
 }
 
-generateIcons(referenceIconPath: referenceIconPath, for: deviceType)
+generateIcon(referenceIconPath: referenceIconPath, with: 1024)
