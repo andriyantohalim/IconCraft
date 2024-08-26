@@ -25,6 +25,8 @@
 /* Begin PBXFileReference section */
 		EF39C30A2C7CCC1800368E74 /* iconcraft */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = iconcraft; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF39C30D2C7CCC1800368E74 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		EF39C3162C7CD3D100368E74 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		EF39C3172C7CD3EC00368E74 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +43,8 @@
 		EF39C3012C7CCC1800368E74 = {
 			isa = PBXGroup;
 			children = (
+				EF39C3172C7CD3EC00368E74 /* LICENSE */,
+				EF39C3162C7CD3D100368E74 /* README.md */,
 				EF39C30C2C7CCC1800368E74 /* IconCraft */,
 				EF39C30B2C7CCC1800368E74 /* Products */,
 			);
