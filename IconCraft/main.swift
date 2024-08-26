@@ -49,7 +49,7 @@ func printHelp() {
       iconcraft -d iPhone
     
     Notes:
-    - The reference icon file must be at least 1024x1024 pixels.
+    - The reference icon file must be at least 1024x1024 pixels and must be square.
     """
     print(helpMessage)
 }
@@ -87,6 +87,11 @@ func generateIcons(referenceIconPath: String, for deviceType: DeviceType) {
 
     guard width >= 1024, height >= 1024 else {
         print("Error: The reference icon file must be at least 1024x1024 pixels.")
+        return
+    }
+
+    guard width == height else {
+        print("Error: The reference icon file must be square (width and height must be equal).")
         return
     }
 
