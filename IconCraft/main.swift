@@ -31,6 +31,7 @@ enum DeviceType: String, CaseIterable {
 
 func printHelp() {
     let helpMessage = """
+    
     iconcraft: A CLI tool to generate app icons for various Apple platforms.
     
     Usage:
