@@ -8,8 +8,25 @@
 import Foundation
 import AppKit
 
-enum DeviceType: String {
+enum DeviceType: String, CaseIterable {
     case iPhone, iPad, macOS, watchOS, tvOS, carOS
+    
+    var sizes: [Int] {
+        switch self {
+        case .iPhone:
+            return [20, 40, 60, 29, 58, 87, 80, 120, 180, 76, 152, 167]
+        case .iPad:
+            return [20, 40, 29, 58, 40, 80, 76, 152, 167, 83]
+        case .macOS:
+            return [16, 32, 64, 128, 256, 512, 1024]
+        case .watchOS:
+            return [48, 55, 58, 87, 80, 88, 172, 196, 216, 1024]
+        case .tvOS:
+            return [400, 800, 1200, 2400]
+        case .carOS:
+            return [200, 400, 800, 1600]
+        }
+    }
 }
 
 func printHelp() {
@@ -21,16 +38,37 @@ func printHelp() {
     
     Options:
       -d    Specify the device type (iPhone, iPad, macOS, watchOS, tvOS, carOS).
+            Use '-d' alone to list supported devices and their resolutions.
+            Use '-d <device type>' to list the resolutions for a specific device.
       -h    Show help information.
     
     Examples:
       iconcraft icon.png -d iPhone
       iconcraft icon.png -d macOS
+      iconcraft -d
+      iconcraft -d iPhone
     
     Notes:
     - The reference icon file must be at least 1024x1024 pixels.
     """
     print(helpMessage)
+}
+
+func listSupportedDevices() {
+    print("Supported devices and their icon resolutions:")
+    for device in DeviceType.allCases {
+        print("\n\(device.rawValue):")
+        for size in device.sizes {
+            print("  - \(size)x\(size) pixels")
+        }
+    }
+}
+
+func listDeviceResolutions(for deviceType: DeviceType) {
+    print("\(deviceType.rawValue) supports the following icon resolutions:")
+    for size in deviceType.sizes {
+        print("  - \(size)x\(size) pixels")
+    }
 }
 
 func generateIcons(referenceIconPath: String, for deviceType: DeviceType) {
@@ -52,22 +90,7 @@ func generateIcons(referenceIconPath: String, for deviceType: DeviceType) {
         return
     }
 
-    let sizes: [Int]
-    
-    switch deviceType {
-    case .iPhone:
-        sizes = [20, 40, 60, 29, 58, 87, 80, 120, 180, 76, 152, 167]
-    case .iPad:
-        sizes = [20, 40, 29, 58, 40, 80, 76, 152, 167, 83]
-    case .macOS:
-        sizes = [16, 32, 64, 128, 256, 512, 1024]
-    case .watchOS:
-        sizes = [48, 55, 58, 87, 80, 88, 172, 196, 216, 1024]
-    case .tvOS:
-        sizes = [400, 800, 1200, 2400]
-    case .carOS:
-        sizes = [200, 400, 800, 1600]
-    }
+    let sizes = deviceType.sizes
 
     let directoryURL = URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
         .appendingPathComponent(deviceType.rawValue, isDirectory: true)
@@ -103,6 +126,21 @@ func generateIcons(referenceIconPath: String, for deviceType: DeviceType) {
 
 let arguments = CommandLine.arguments
 
+if arguments.count == 2 && arguments[1] == "-d" {
+    listSupportedDevices()
+    exit(0)
+}
+
+if arguments.count == 3 && arguments[1] == "-d" {
+    if let deviceType = DeviceType(rawValue: arguments[2]) {
+        listDeviceResolutions(for: deviceType)
+    } else {
+        print("Error: Invalid device type specified.")
+        printHelp()
+    }
+    exit(0)
+}
+
 guard arguments.count == 4 else {
     if arguments.count == 2 && arguments[1] == "-h" {
         printHelp()
@@ -124,6 +162,3 @@ guard deviceOption == "-d", let deviceType = DeviceType(rawValue: deviceTypeArgu
 }
 
 generateIcons(referenceIconPath: referenceIconPath, for: deviceType)
-
-
-
