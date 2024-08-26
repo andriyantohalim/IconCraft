@@ -23,7 +23,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		EF39C30A2C7CCC1800368E74 /* IconCraft */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = IconCraft; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF39C30A2C7CCC1800368E74 /* iconcraft */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = iconcraft; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF39C30D2C7CCC1800368E74 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -49,7 +49,7 @@
 		EF39C30B2C7CCC1800368E74 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				EF39C30A2C7CCC1800368E74 /* IconCraft */,
+				EF39C30A2C7CCC1800368E74 /* iconcraft */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -65,9 +65,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		EF39C3092C7CCC1800368E74 /* IconCraft */ = {
+		EF39C3092C7CCC1800368E74 /* iconcraft */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EF39C3112C7CCC1800368E74 /* Build configuration list for PBXNativeTarget "IconCraft" */;
+			buildConfigurationList = EF39C3112C7CCC1800368E74 /* Build configuration list for PBXNativeTarget "iconcraft" */;
 			buildPhases = (
 				EF39C3062C7CCC1800368E74 /* Sources */,
 				EF39C3072C7CCC1800368E74 /* Frameworks */,
@@ -77,9 +77,9 @@
 			);
 			dependencies = (
 			);
-			name = IconCraft;
+			name = iconcraft;
 			productName = IconCraft;
-			productReference = EF39C30A2C7CCC1800368E74 /* IconCraft */;
+			productReference = EF39C30A2C7CCC1800368E74 /* iconcraft */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -97,7 +97,7 @@
 					};
 				};
 			};
-			buildConfigurationList = EF39C3052C7CCC1800368E74 /* Build configuration list for PBXProject "IconCraft" */;
+			buildConfigurationList = EF39C3052C7CCC1800368E74 /* Build configuration list for PBXProject "iconcraft" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -110,7 +110,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				EF39C3092C7CCC1800368E74 /* IconCraft */,
+				EF39C3092C7CCC1800368E74 /* iconcraft */,
 			);
 		};
 /* End PBXProject section */
@@ -270,7 +270,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		EF39C3052C7CCC1800368E74 /* Build configuration list for PBXProject "IconCraft" */ = {
+		EF39C3052C7CCC1800368E74 /* Build configuration list for PBXProject "iconcraft" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EF39C30F2C7CCC1800368E74 /* Debug */,
@@ -279,7 +279,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EF39C3112C7CCC1800368E74 /* Build configuration list for PBXNativeTarget "IconCraft" */ = {
+		EF39C3112C7CCC1800368E74 /* Build configuration list for PBXNativeTarget "iconcraft" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EF39C3122C7CCC1800368E74 /* Debug */,
