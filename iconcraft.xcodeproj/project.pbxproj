@@ -45,7 +45,7 @@
 			children = (
 				EF39C3172C7CD3EC00368E74 /* LICENSE */,
 				EF39C3162C7CD3D100368E74 /* README.md */,
-				EF39C30C2C7CCC1800368E74 /* IconCraft */,
+				EF39C30C2C7CCC1800368E74 /* iconcraft */,
 				EF39C30B2C7CCC1800368E74 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -58,12 +58,12 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		EF39C30C2C7CCC1800368E74 /* IconCraft */ = {
+		EF39C30C2C7CCC1800368E74 /* iconcraft */ = {
 			isa = PBXGroup;
 			children = (
 				EF39C30D2C7CCC1800368E74 /* main.swift */,
 			);
-			path = IconCraft;
+			path = iconcraft;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -94,7 +94,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1500;
-				LastUpgradeCheck = 1500;
+				LastUpgradeCheck = 1510;
 				TargetAttributes = {
 					EF39C3092C7CCC1800368E74 = {
 						CreatedOnToolsVersion = 15.0.1;
@@ -165,6 +165,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -228,6 +229,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -253,6 +255,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 9D79AWT4TU;
 				ENABLE_HARDENED_RUNTIME = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -264,6 +267,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 9D79AWT4TU;
 				ENABLE_HARDENED_RUNTIME = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
